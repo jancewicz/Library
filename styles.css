@@ -1,0 +1,106 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(217, 217, 217, 1);
+}
+
+.header {
+    width: 100%;
+    height: 10vh;
+    border: 2px grey solid;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 42px;
+    display: flex;
+    font-weight: bold;
+    align-items: end;
+}
+
+.bookIcon {
+    margin-left: 1vh;
+    height: 5vh;
+}
+
+.functional-bar {
+    width: 100%;
+    height: 10vh;
+    border: 2px grey solid;
+    display: flex;
+
+}
+
+.leftContainer {
+    height: 100%;
+    width: 50%;
+}
+
+.leftContainer>p {
+    margin: 5px;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-weight: 300;
+    margin-left: 10px;
+}
+
+.rightContainer {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.addBook {
+    width: 20vh;
+    height: 5vh;
+    margin: 20px;
+    border-radius: 15px;
+    background-color: rgba(22, 218, 87, 1);
+    border: 3px solid grey;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 15px;
+}
+
+.addBook:hover {
+    background-color: rgba(5, 255, 88, 1);
+}
+
+.library-display {
+    width: 100%;
+    height: 70vh;
+    border: 2px grey solid;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+
+
+.grid-item {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+.footer {
+    width: 100%;
+    height: 5vh;
+    border: 2px grey solid;
+    display: flex;
+    justify-content: center;
+}
+
+#signature {
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    font-weight: 500;
+
+}
+
+#ghlogo {
+    width: 4vh;
+    height: 4vh;
+    margin: 2px;
+}
