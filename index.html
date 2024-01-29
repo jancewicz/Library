@@ -9,6 +9,26 @@
 </head>
 
 <body>
+    <fieldset id="new-book-questionary">
+        <p>Would you like to add new book?</p>
+        <br>
+        <input type="text" id="title" placeholder="title">
+        <input type="text" id="author" placeholder="author">
+        <input type="text" id="genre" placeholder="genre">
+        <input type="text" id="publish-date" placeholder="publish-date">
+
+        <div>Have you read it?<div>
+                <div>
+                    <input type="radio" id="yes" value="yes" name="isread">
+                    <label for="yes">Yes</label>
+                </div>
+                <div>
+                    <input type="radio" id="no" value="no" name="isread">
+                    <label for="no">No</label>
+                </div>
+                <div><button type="submit">Add book</button></div>
+    </fieldset>
+
     <div class="container">
         <div class="header">LIBRARY
             <img src="./icons/book-open.svg" class="bookIcon" alt="bookmarks icon">
@@ -16,22 +36,32 @@
 
         <div class="functional-bar">
             <div class="leftContainer">
-                <p>Books total: 0</p>
-                <p>Books read: 0</p>
-                <p>Books to read: 0</p>
+                <p id="total">Books total: 0</p>
+                <p id="read">Books read: 0</p>
+                <p id="toRead">Books to read: 0</p>
             </div>
             <div class="rightContainer">
                 <button type="button" class="addBook">Add new book</button>
             </div>
         </div>
-
         <div class="library-display">
-            <div class="grid-item">1</div>
-            <div class="grid-item">2</div>
-            <div class="grid-item">3</div>
-            <div class="grid-item">4</div>
-            <div class="grid-item">5</div>
-            <div class="grid-item">6</div>
+            <div class="grid-item">
+                <p>Title: </p>
+                <p>Author: </p>
+                <p>Genre: </p>
+                <p>Publishing date: </p>
+                <p>Read: (Not read yet / Already read)</p>
+                <button type="button" id="remove-btn">REMOVE</button>
+            </div>
+            <div class="grid-item">
+                <p>Title: </p>
+                <p>Author: </p>
+                <p>Genre: </p>
+                <p>Publishing date: </p>
+                <p>Read: (Not read yet / Already read)</p>
+                <button type="button" id="remove-btn">REMOVE</button>
+            </div>
+
         </div>
         <div class="footer">
             <div id="signature">Made by Pawel Jancewicz</div>
