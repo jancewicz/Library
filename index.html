@@ -10,14 +10,16 @@
 
 <body>
     <fieldset id="new-book-questionary">
-        <p>Would you like to add new book?</p>
-        <br>
+        <div class="upper-container">
+            <p>Would you like to add new book?</p>
+            <img id="exit-button" src="./icons/close-red-icon.svg">
+        </div>
         <input type="text" id="title" placeholder="title">
         <input type="text" id="author" placeholder="author">
         <input type="text" id="genre" placeholder="genre">
         <input type="text" id="publish-date" placeholder="publish-date">
 
-        <div>Have you read it?<div>
+        <div id="radio-question">Have you read it?<div>
                 <div>
                     <input type="radio" id="yes" value="yes" name="isread">
                     <label for="yes">Yes</label>
@@ -26,14 +28,12 @@
                     <input type="radio" id="no" value="no" name="isread">
                     <label for="no">No</label>
                 </div>
-                <div><button type="submit">Add book</button></div>
+                <div><button type="submit" id="submit-book">Add book</button></div>
     </fieldset>
-
     <div class="container">
         <div class="header">LIBRARY
             <img src="./icons/book-open.svg" class="bookIcon" alt="bookmarks icon">
         </div>
-
         <div class="functional-bar">
             <div class="leftContainer">
                 <p id="total">Books total: 0</p>

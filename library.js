@@ -1,5 +1,9 @@
 const addNewBookButton = document.querySelector(".addBook");
+const displayBookQuestionary = document.getElementById("new-book-questionary");
+const exitDisplayBookQuestionaryButton = document.getElementById("exit-button");
+const submitBookButton = document.getElementById("submit-book");
 let bookList = [];
+
 
 
 function Book(title, author, genre, publishDate, isRead) {
@@ -15,9 +19,25 @@ Book.prototype.storeBooksList = function () {
     // whenever new book object is created, append it to bookList array
 }
 
-function addBook() {
-    addNewBookButton.addEventListener("click", () => {
-        // get info from questionary div title/author etc and create new object with 
-        // provided info
+function exitDisplayBookQuestionary() {
+    exitDisplayBookQuestionaryButton.addEventListener("click", () => {
+        displayBookQuestionary.style.display = "none";
     });
 }
+
+function addBook() {
+    addNewBookButton.addEventListener("click", () => {
+        displayBookQuestionary.style.display = "block";
+    });
+}
+
+
+function submitBookToLibrary() {
+    submitBookButton.addEventListener("click"() => {
+        // data from inputs is converted to create a new object Book
+
+    })
+}
+
+addBook();
+exitDisplayBookQuestionary();

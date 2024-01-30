@@ -1,7 +1,5 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 }
 
 
@@ -72,20 +70,50 @@ body {
 }
 
 #new-book-questionary {
+    display: none;
+    position: fixed;
+    right: 35%;
+    left: 35%;
+    bottom: 30%;
     width: 400px;
     height: 400px;
     border: 2px solid black;
-    display: none;
-    /*flex-direction: column;*/
     background-color: rgba(243, 239, 226, 1);
     border: 3px solid white;
     font-weight: 500;
     border-radius: 10px;
     font-size: 16px;
+    z-index: 1000;
 }
 
+#new-book-questionary>.upper-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#new-book-questionary>.upper-container>#exit-button {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+#new-book-questionary>.upper-container>#exit-button:hover {
+    transform: scale(1.2);
+}
+
+
+
 #new-book-questionary>input {
-    margin: 20px;
+    margin: 15px;
+}
+
+
+#submit-book {
+    margin-top: 30px;
+    background-color: rgba(5, 255, 88, 1);
+    border-radius: 7px;
 }
 
 .library-display {
