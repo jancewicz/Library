@@ -86,12 +86,16 @@ body {
     z-index: 1000;
 }
 
-#new-book-questionary>.upper-container {
+fieldset {
+    border: none;
+}
+
+.upper-container {
     display: flex;
     justify-content: space-between;
 }
 
-#new-book-questionary>.upper-container>#exit-button {
+#exit-button {
     cursor: pointer;
     height: 25px;
     width: 25px;
@@ -99,14 +103,16 @@ body {
     margin-right: 0.5rem;
 }
 
-#new-book-questionary>.upper-container>#exit-button:hover {
+#exit-button:hover {
     transform: scale(1.2);
 }
 
-
-
-#new-book-questionary>input {
+fieldset>input {
     margin: 15px;
+}
+
+#radio-question {
+    margin-top: 5px;
 }
 
 

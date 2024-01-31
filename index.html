@@ -9,27 +9,31 @@
 </head>
 
 <body>
-    <fieldset id="new-book-questionary">
-        <div class="upper-container">
-            <p>Would you like to add new book?</p>
-            <img id="exit-button" src="./icons/close-red-icon.svg">
-        </div>
-        <input type="text" id="title" placeholder="title">
-        <input type="text" id="author" placeholder="author">
-        <input type="text" id="genre" placeholder="genre">
-        <input type="text" id="publish-date" placeholder="publish-date">
+    <form id="new-book-questionary">
+        <fieldset>
+            <div class="upper-container">
+                <p>Would you like to add new book?</p>
+                <img id="exit-button" src="./icons/close-red-icon.svg">
+            </div>
+            <input type="text" id="title" name="title" placeholder="title">
+            <input type="text" id="author" name="author" placeholder="author">
+            <input type="text" id="genre" name="genre" placeholder="genre">
+            <input type="text" id="publish-date" name="publish-date" placeholder="publish-date (YYYY-MM-DD)">
 
-        <div id="radio-question">Have you read it?<div>
-                <div>
-                    <input type="radio" id="yes" value="yes" name="isread">
-                    <label for="yes">Yes</label>
-                </div>
-                <div>
-                    <input type="radio" id="no" value="no" name="isread">
-                    <label for="no">No</label>
-                </div>
-                <div><button type="submit" id="submit-book">Add book</button></div>
-    </fieldset>
+            <div id="radio-question">Have you read it?<div>
+                    <div>
+                        <input type="radio" id="yes" value="yes" name="isread">
+                        <label for="yes">Yes</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="no" value="no" name="isread">
+                        <label for="no">No</label>
+                    </div>
+                    <div>
+                        <button type="button" id="submit-book">Add book</button>
+                    </div>
+        </fieldset>
+    </form>
     <div class="container">
         <div class="header">LIBRARY
             <img src="./icons/book-open.svg" class="bookIcon" alt="bookmarks icon">

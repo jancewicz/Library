@@ -2,42 +2,34 @@ const addNewBookButton = document.querySelector(".addBook");
 const displayBookQuestionary = document.getElementById("new-book-questionary");
 const exitDisplayBookQuestionaryButton = document.getElementById("exit-button");
 const submitBookButton = document.getElementById("submit-book");
+const form = document.querySelector("form")
 let bookList = [];
 
 
-
-function Book(title, author, genre, publishDate, isRead) {
-    this.title = title;
-    this.author = author;
-    this.genre = genre;
-    this.publishDate = publishDate;
-    this.isRead = isRead;
+function submitNewBook(ev) {
+    ev.preventDefault();
+    const isReadValue = document.querySelector('input[name="isread"]:checked').value;
+    let book = {
+        title: document.getElementById("title").value,
+        author: document.getElementById("author").value,
+        genre: document.getElementById("genre").value,
+        publishDate: document.getElementById("publish-date").value,
+        isRead: isReadValue
+    };
+    bookList.push(book);
+    document.querySelector("#new-book-questionary").reset();
+    console.log(bookList);
+    displayBookQuestionary.style.display = "none";
 }
 
 
-Book.prototype.storeBooksList = function () {
-    // whenever new book object is created, append it to bookList array
-}
+exitDisplayBookQuestionaryButton.addEventListener("click", () => {
+    displayBookQuestionary.style.display = "none";
+});
 
-function exitDisplayBookQuestionary() {
-    exitDisplayBookQuestionaryButton.addEventListener("click", () => {
-        displayBookQuestionary.style.display = "none";
-    });
-}
+addNewBookButton.addEventListener("click", () => {
+    displayBookQuestionary.style.display = "block";
+});
 
-function addBook() {
-    addNewBookButton.addEventListener("click", () => {
-        displayBookQuestionary.style.display = "block";
-    });
-}
+submitBookButton.addEventListener("click", submitNewBook);
 
-
-function submitBookToLibrary() {
-    submitBookButton.addEventListener("click"() => {
-        // data from inputs is converted to create a new object Book
-
-    })
-}
-
-addBook();
-exitDisplayBookQuestionary();
