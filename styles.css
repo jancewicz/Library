@@ -133,6 +133,21 @@ fieldset>input {
     overflow: auto;
 }
 
+.grid-item-template {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(243, 239, 226, 1);
+    display: none;
+    /* set to flex ! */
+    flex-direction: column;
+    border: 3px solid white;
+    font-weight: 500;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-top: 5px;
+
+}
+
 
 .grid-item {
     width: 100%;
