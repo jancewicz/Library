@@ -1,16 +1,17 @@
-const templateGridItem = document.getElementsByClassName("grid-item-template");
+const templateGridItem = document.getElementById("template-grid");
 const addNewBookButton = document.querySelector(".addBook");
 const displayBookQuestionary = document.getElementById("new-book-questionary");
 const exitDisplayBookQuestionaryButton = document.getElementById("exit-button");
 const submitBookButton = document.getElementById("submit-book");
-const removeGridElementButton = document.getElementById("remove-btn");
 const form = document.querySelector("form")
 
 let bookList = [];
+let booksTotal = 0;
+let booksRead = 0;
+let booksToRead = 0;
 
 
-function submitNewBook(ev) {
-    ev.preventDefault();
+function submitNewBook() {
     const isReadValue = document.querySelector('input[name="isread"]:checked').value;
     let book = {
         id: 0,
@@ -26,21 +27,21 @@ function submitNewBook(ev) {
     });
     document.querySelector("#new-book-questionary").reset();
     console.log(bookList);
-    displayBookQuestionary.style.display = "none";
-}
 
-function createNewGridElement() {
-    // get parent node to append new childs elements
-    const parentNode = document.getElementsByClassName("library-display");
-    // clone and store in variable html blueprint of grid item
+    const parentNode = document.getElementById("main-dispaly");
     let cloneNode = templateGridItem.cloneNode(true);
-    // clone css for html element 
     cloneNode.style.cssText = templateGridItem.style.cssText;
-    cloneNode.className = `grid-item ${book.id}`
-    parentNode.appendChild(cloneNode)
+    cloneNode.className = `grid-item from js code`;
+    cloneNode.id = `cloned ${book.id}`;
 
-
-
+    cloneNode.innerHTML = `<p>Title: ${book.title} </p> 
+    <p>Author: ${book.author} </p> 
+    <p>Genre: ${book.genre} </p> 
+    <p>Publishing date: ${book.publishDate} </p> 
+    <p>Read: ${book.isRead}</p> 
+    <button type="button" class="remove-btn">REMOVE</button>`
+    parentNode.appendChild(cloneNode);
+    displayBookQuestionary.style.display = "none";
 }
 
 
@@ -52,12 +53,11 @@ addNewBookButton.addEventListener("click", () => {
     displayBookQuestionary.style.display = "block";
 });
 
-submitBookButton.addEventListener("click", submitNewBook);
+submitBookButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    submitNewBook();
+});
 
 
 
-// removeGridElementButton.addEventListener("click", () => {
-//     // to remove parent element first I need to be able to add new grid element with id= n and remove btn with n'th id
-//     // js needs to know which remove button I click
-//     let parentElement = removeGridElementButton.parentNode;
-// })
+

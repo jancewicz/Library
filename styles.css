@@ -166,7 +166,7 @@ fieldset>input {
     padding-left: 10px;
 }
 
-#remove-btn {
+.remove-btn {
     width: 50%;
     height: 10%;
     margin-left: 25%;
@@ -177,7 +177,7 @@ fieldset>input {
 
 }
 
-#remove-btn:hover {
+.remove-btn:hover {
     background-color: rgba(248, 27, 27, 1);
 }
 
