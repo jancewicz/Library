@@ -21,8 +21,6 @@ booksAlreadyReadCounter.innerHTML = `<p id="read" style="${cssCounterStyle}">Boo
 booksToReadCounter.innerHTML = `<p id="toRead" style="${cssCounterStyle}">Books to read: ${booksToRead}</p>`;
 
 
-
-
 function submitNewBook() {
     const isReadValue = document.querySelector('input[name="isread"]:checked').value;
     let book = {
@@ -66,18 +64,16 @@ function submitNewBook() {
 mainDisplay.addEventListener("click", function (ev) {
     if (ev.target.classList.contains("remove-btn")) {
         const buttonId = ev.target.id;
-
         const gridElementToRemove = document.getElementById(buttonId);
+        const gridElementToRemoveAsNum = parseInt(buttonId, 10);
 
         if (gridElementToRemove) {
-            gridElementToRemove.remove();
-            let gridElementToRemoveAsNum = parseInt(buttonId, 10);
-            bookList.forEach((book, index) => {
-                console.log(`book id: ${book.id} on index ${index}`);
-                if (book.id === gridElementToRemoveAsNum) {
-                    bookList.splice(index, 1);
-                }
+            bookList = bookList.filter((book) => {
+                return !(book.id === gridElementToRemoveAsNum);
             });
+            totalBooksCounter.innerHTML = `<p id="total" style="${cssCounterStyle}">Books total: ${booksTotal -= 1}</p>`;
+            gridElementToRemove.remove();
+            console.log(bookList);
         }
     }
 });
