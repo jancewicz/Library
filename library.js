@@ -1,14 +1,26 @@
 const templateGridItem = document.getElementById("template-grid");
+const mainDisplay = document.getElementById("main-dispaly");
 const addNewBookButton = document.querySelector(".addBook");
 const displayBookQuestionary = document.getElementById("new-book-questionary");
 const exitDisplayBookQuestionaryButton = document.getElementById("exit-button");
 const submitBookButton = document.getElementById("submit-book");
 const form = document.querySelector("form")
+const totalBooksCounter = document.getElementById("total");
+const booksAlreadyReadCounter = document.getElementById("read");
+const booksToReadCounter = document.getElementById("toRead");
 
 let bookList = [];
 let booksTotal = 0;
 let booksRead = 0;
 let booksToRead = 0;
+
+// set dafault values for counters on page
+const cssCounterStyle = 'margin: 5px; font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; font-weight: 300; margin-left: 10px;'
+totalBooksCounter.innerHTML = `<p id="total" style="${cssCounterStyle}">Books total: ${booksTotal}</p>`;
+booksAlreadyReadCounter.innerHTML = `<p id="read" style="${cssCounterStyle}">Books read: ${booksRead}</p>`;
+booksToReadCounter.innerHTML = `<p id="toRead" style="${cssCounterStyle}">Books to read: ${booksToRead}</p>`;
+
+
 
 
 function submitNewBook() {
@@ -28,21 +40,47 @@ function submitNewBook() {
     document.querySelector("#new-book-questionary").reset();
     console.log(bookList);
 
-    const parentNode = document.getElementById("main-dispaly");
+
     let cloneNode = templateGridItem.cloneNode(true);
     cloneNode.style.cssText = templateGridItem.style.cssText;
     cloneNode.className = `grid-item from js code`;
-    cloneNode.id = `cloned ${book.id}`;
+    cloneNode.id = `${book.id}`;
 
-    cloneNode.innerHTML = `<p>Title: ${book.title} </p> 
-    <p>Author: ${book.author} </p> 
-    <p>Genre: ${book.genre} </p> 
-    <p>Publishing date: ${book.publishDate} </p> 
-    <p>Read: ${book.isRead}</p> 
-    <button type="button" class="remove-btn">REMOVE</button>`
-    parentNode.appendChild(cloneNode);
+    cloneNode.innerHTML = `<p><strong>Title:</strong> ${book.title} </p> 
+    <p><strong>Author:</strong> ${book.author} </p> 
+    <p><strong>Genre:</strong> ${book.genre} </p> 
+    <p><strong>Publishing date:</strong> ${book.publishDate} </p> 
+    <p><strong>Read:</strong> ${book.isRead}</p> 
+    <button type="button" class="remove-btn" id=${book.id}>REMOVE</button>`
+    mainDisplay.appendChild(cloneNode);
+
+    totalBooksCounter.innerHTML = `<p id="total" style="${cssCounterStyle}">Books total: ${booksTotal += 1}</p>`;
+    if (book.isRead === "yes") {
+        booksAlreadyReadCounter.innerHTML = `<p id="read" style="${cssCounterStyle}">Books read: ${booksRead += 1}</p>`;
+    } else if (book.isRead === "no") {
+        booksToReadCounter.innerHTML = `<p id="toRead" style="${cssCounterStyle}">Books to read: ${booksToRead += 1}</p>`;
+    }
     displayBookQuestionary.style.display = "none";
 }
+
+mainDisplay.addEventListener("click", function (ev) {
+    if (ev.target.classList.contains("remove-btn")) {
+        const buttonId = ev.target.id;
+
+        const gridElementToRemove = document.getElementById(buttonId);
+
+        if (gridElementToRemove) {
+            gridElementToRemove.remove();
+            let gridElementToRemoveAsNum = parseInt(buttonId, 10);
+            bookList.forEach((book, index) => {
+                console.log(`book id: ${book.id} on index ${index}`);
+                if (book.id === gridElementToRemoveAsNum) {
+                    bookList.splice(index, 1);
+                }
+            });
+        }
+    }
+});
 
 
 exitDisplayBookQuestionaryButton.addEventListener("click", () => {
@@ -57,7 +95,4 @@ submitBookButton.addEventListener("click", function (event) {
     event.preventDefault();
     submitNewBook();
 });
-
-
-
 
