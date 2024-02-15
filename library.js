@@ -68,12 +68,23 @@ mainDisplay.addEventListener("click", function (ev) {
         const gridElementToRemoveAsNum = parseInt(buttonId, 10);
 
         if (gridElementToRemove) {
-            bookList = bookList.filter((book) => {
+            const filteredBookList = bookList.filter((book) => {
                 return !(book.id === gridElementToRemoveAsNum);
             });
+
+            const deletedElement = bookList.find((book) => {
+                return (book.id === gridElementToRemoveAsNum)
+            });
+
+            if (deletedElement.isRead === "yes") {
+                booksAlreadyReadCounter.innerHTML = `<p id="read" style="${cssCounterStyle}">Books read: ${booksRead -= 1}</p>`;
+
+            } else if (deletedElement.isRead === "no") {
+                booksToReadCounter.innerHTML = `<p id="toRead" style="${cssCounterStyle}">Books to read: ${booksToRead -= 1}</p>`;
+            }
+
             totalBooksCounter.innerHTML = `<p id="total" style="${cssCounterStyle}">Books total: ${booksTotal -= 1}</p>`;
             gridElementToRemove.remove();
-            console.log(bookList);
         }
     }
 });

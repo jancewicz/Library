@@ -109,6 +109,7 @@ fieldset {
 
 fieldset>input {
     margin: 15px;
+    height: 20px;
 }
 
 #radio-question {
