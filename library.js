@@ -23,20 +23,105 @@ booksAlreadyReadCounter.innerHTML = `<p id="read" style="${cssCounterStyle}">Boo
 booksToReadCounter.innerHTML = `<p id="toRead" style="${cssCounterStyle}">Books to read: ${booksToRead}</p>`;
 
 
+class Book {
+    static #id = 0;
+
+    static #incrementId() {
+        this.#id++;
+    }
+
+    constructor(title, author, genre, publishDate, isRead) {
+        Book.#incrementId();
+        this.id = Book.#id;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.publishDate = publishDate;
+        this.isRead = isRead;
+    }
+
+    appendBookToArray() {
+        bookList.push(Book)
+    }
+
+    set title(newTitle) {
+        if (newTitle.length > 0) {
+            this._title = newTitle;
+        } else {
+            console.error("Title must be non empty string");
+        }
+    }
+
+    set author(newAuthor) {
+        if (newAuthor.length > 0) {
+            this._author = newAuthor
+        } else {
+            console.error("Author must be non empty string");
+        }
+    }
+
+    set genre(newGenre) {
+        if (newGenre.length > 0) {
+            this._genre = newGenre
+        } else {
+            console.error("Genre must be non empty string");
+        }
+    }
+
+    set publishDate(newPublishDate) {
+        if (newPublishDate < new Date()) {
+            this._publishDate = newPublishDate
+        } else {
+            console.log(new Date)
+            console.log(newPublishDate)
+            console.error("You cannot add books from the future")
+        }
+    }
+
+    set id(newId) {
+        if (!isNaN(newId)) {
+            Book.#id = newId;
+        } else {
+            console.error("Id property must be a positive number")
+        }
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    get title() {
+        return this._title;
+    }
+
+    get author() {
+        return this._author;
+    }
+
+    get publishDate() {
+        return this._publishDate;
+    }
+
+
+}
+
+
 function submitNewBook() {
     const isReadValue = document.querySelector('input[name="isread"]:checked').value;
-    let book = {
-        id: 0,
-        title: document.getElementById("title").value,
-        author: document.getElementById("author").value,
-        genre: document.getElementById("genre").value,
-        publishDate: document.getElementById("publish-date").value,
-        isRead: isReadValue
-    };
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let genre = document.getElementById("genre").value;
+    let publishDate = document.getElementById("publish-date").value;
+    let isRead = isReadValue;
+
+    let book = new Book(title, author, genre, publishDate, isRead);
+
+
     bookList.push(book);
     bookList.forEach((book, index) => {
         book.id = index + 1;
     });
+    // restores form default value
     document.querySelector("#new-book-questionary").reset();
     console.log(bookList);
 
