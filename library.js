@@ -85,6 +85,7 @@ mainDisplay.addEventListener("click", function (ev) {
 
             totalBooksCounter.innerHTML = `<p id="total" style="${cssCounterStyle}">Books total: ${booksTotal -= 1}</p>`;
             gridElementToRemove.remove();
+            bookList = filteredBookList;
         }
     }
 });
