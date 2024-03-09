@@ -15,15 +15,15 @@
                 <p>Would you like to add new book?</p>
                 <img id="exit-button" src="./icons/close-red-icon.svg">
             </div>
-            <input type="text" id="title" name="title" placeholder="title">
-            <input type="text" id="author" name="author" placeholder="author">
-            <input type="text" id="genre" name="genre" placeholder="genre">
-            <input type="text" id="publish-date" name="publish-date" placeholder="publish-date"
+            <input type="text" id="title" name="title" required placeholder="title">
+            <input type="text" id="author" name="author" required placeholder="author">
+            <input type="text" id="genre" name="genre" required placeholder="genre">
+            <input type="text" id="publish-date" name="publish-date" required placeholder="publish-date"
                 onfocus="(this.type='date')" onblur="(this.type='text')">
 
             <div id="radio-question">Have you read it?<div>
                     <div>
-                        <input type="radio" id="yes" value="yes" name="isread">
+                        <input type="radio" id="yes" value="yes" required name="isread">
                         <label for="yes">Yes</label>
                     </div>
                     <div>
@@ -31,7 +31,7 @@
                         <label for="no">No</label>
                     </div>
                     <div>
-                        <button type="button" id="submit-book">Submit</button>
+                        <button type="submit" id="submit-book">Submit</button>
                     </div>
         </fieldset>
     </form>

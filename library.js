@@ -1,17 +1,14 @@
-// test new branch
-
 const templateGridItem = document.getElementById("template-grid");
 const mainDisplay = document.getElementById("main-dispaly");
 const addNewBookButton = document.querySelector(".addBook");
 const displayBookQuestionary = document.getElementById("new-book-questionary");
 const exitDisplayBookQuestionaryButton = document.getElementById("exit-button");
-const submitBookButton = document.getElementById("submit-book");
 const form = document.querySelector("form")
 const totalBooksCounter = document.getElementById("total");
 const booksAlreadyReadCounter = document.getElementById("read");
 const booksToReadCounter = document.getElementById("toRead");
 
-let bookList = [];
+let currentBookList = [];
 let booksTotal = 0;
 let booksRead = 0;
 let booksToRead = 0;
@@ -25,6 +22,7 @@ booksToReadCounter.innerHTML = `<p id="toRead" style="${cssCounterStyle}">Books 
 
 class Book {
     static #id = 0;
+    static bookListInClass = [];
 
     static #incrementId() {
         this.#id++;
@@ -32,16 +30,13 @@ class Book {
 
     constructor(title, author, genre, publishDate, isRead) {
         Book.#incrementId();
+        Book.bookListInClass.push(this);
         this.id = Book.#id;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.publishDate = publishDate;
         this.isRead = isRead;
-    }
-
-    appendBookToArray() {
-        bookList.push(Book)
     }
 
     set title(newTitle) {
@@ -69,7 +64,7 @@ class Book {
     }
 
     set publishDate(newPublishDate) {
-        if (newPublishDate < new Date()) {
+        if (new Date(newPublishDate) <= new Date()) {
             this._publishDate = newPublishDate
         } else {
             console.log(new Date)
@@ -79,8 +74,8 @@ class Book {
     }
 
     set id(newId) {
-        if (!isNaN(newId)) {
-            Book.#id = newId;
+        if (newId > 0) {
+            this._id = newId;
         } else {
             console.error("Id property must be a positive number")
         }
@@ -88,6 +83,10 @@ class Book {
 
     get id() {
         return this._id;
+    }
+
+    static getBookList() {
+        return Book.bookListInClass;
     }
 
     get title() {
@@ -102,9 +101,10 @@ class Book {
         return this._publishDate;
     }
 
-
+    get genre() {
+        return this._genre;
+    }
 }
-
 
 function submitNewBook() {
     const isReadValue = document.querySelector('input[name="isread"]:checked').value;
@@ -116,15 +116,8 @@ function submitNewBook() {
 
     let book = new Book(title, author, genre, publishDate, isRead);
 
-
-    bookList.push(book);
-    bookList.forEach((book, index) => {
-        book.id = index + 1;
-    });
-    // restores form default value
+    currentBookList.push(book);
     document.querySelector("#new-book-questionary").reset();
-    console.log(bookList);
-
 
     let cloneNode = templateGridItem.cloneNode(true);
     cloneNode.style.cssText = templateGridItem.style.cssText;
@@ -155,12 +148,12 @@ mainDisplay.addEventListener("click", function (ev) {
         const gridElementToRemoveAsNum = parseInt(buttonId, 10);
 
         if (gridElementToRemove) {
-            const filteredBookList = bookList.filter((book) => {
+            const filteredBookList = Book.getBookList().filter((book) => {
                 return !(book.id === gridElementToRemoveAsNum);
             });
 
-            const deletedElement = bookList.find((book) => {
-                return (book.id === gridElementToRemoveAsNum)
+            const deletedElement = Book.getBookList().find((book) => {
+                return (book.id === gridElementToRemoveAsNum);
             });
 
             if (deletedElement.isRead === "yes") {
@@ -172,7 +165,8 @@ mainDisplay.addEventListener("click", function (ev) {
 
             totalBooksCounter.innerHTML = `<p id="total" style="${cssCounterStyle}">Books total: ${booksTotal -= 1}</p>`;
             gridElementToRemove.remove();
-            bookList = filteredBookList;
+            currentBookList = filteredBookList;
+
         }
     }
 });
@@ -186,8 +180,9 @@ addNewBookButton.addEventListener("click", () => {
     displayBookQuestionary.style.display = "block";
 });
 
-submitBookButton.addEventListener("click", function (event) {
-    event.preventDefault();
+displayBookQuestionary.addEventListener("submit", (e) => {
+    e.preventDefault();
     submitNewBook();
 });
+
 
